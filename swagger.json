@@ -1,0 +1,844 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Support Ticket",
+    "description": "Awesome Project",
+    "contact": {}
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1.0",
+  "securityDefinitions": {
+    "jwt": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+    }
+  },
+  "security": [
+      {
+          "jwt": []
+      }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "description": "",
+        "summary": "Login",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "AuthLoginPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LoginRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "default": "application/json",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "description": "",
+        "summary": "Create User",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "UserPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateUserRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "default": "application/json",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "summary": "Get All User",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "UserGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "description": "",
+        "summary": "Get User By Id",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "User1Get",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID",
+            "required": true,
+            "schema": {
+            "type": "integer",
+            "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "patch": {
+        "description": "",
+        "summary": "Edit User By Id",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "User19Patch",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EditUserByIdRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "default": "application/json",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID",
+            "required": true,
+            "schema": {
+            "type": "integer",
+            "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "summary": "Delete User By Id",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "User19Delete",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID",
+            "required": true,
+            "schema": {
+            "type": "integer",
+            "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/ticket": {
+      "post": {
+        "description": "",
+        "summary": "Create Ticket",
+        "tags": [
+          "Tickets"
+        ],
+        "operationId": "TicketPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateTicketRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "default": "application/json",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "summary": "Get All Ticket (ADMIN,MANAGER)",
+        "tags": [
+          "Tickets"
+        ],
+        "operationId": "TicketGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/ticket/byRequesterUser": {
+      "get": {
+        "description": "",
+        "summary": "Get All Ticket By Requester User",
+        "tags": [
+          "Tickets"
+        ],
+        "operationId": "TicketByRequesterUserGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/ticket/byAssignedUser": {
+      "get": {
+        "description": "",
+        "summary": "Get All Ticket By Assigned User",
+        "tags": [
+          "Tickets"
+        ],
+        "operationId": "TicketByAssignedUserGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/ticket/{id}": {
+      "get": {
+        "description": "",
+        "summary": "Get Ticket By Id",
+        "tags": [
+          "Tickets"
+        ],
+        "operationId": "Ticket2Get",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID",
+            "required": true,
+            "schema": {
+            "type": "integer",
+            "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "patch": {
+        "description": "",
+        "summary": "Edit Ticket By Id",
+        "tags": [
+          "Tickets"
+        ],
+        "operationId": "Ticket2Patch",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EditTicketByIdRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "default": "application/json",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID",
+            "required": true,
+            "schema": {
+            "type": "integer",
+            "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/ticket/{id}": {
+      "delete": {
+        "description": "",
+        "summary": "Delete Ticket By Id",
+        "tags": [
+          "Tickets"
+        ],
+        "operationId": "Ticket3Delete",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID",
+            "required": true,
+            "schema": {
+            "type": "integer",
+            "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LoginRequest": {
+      "title": "LoginRequest",
+      "example": {
+        "username": "admin",
+        "password": "admin"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ]
+    },
+    "CreateUserRequest": {
+      "title": "CreateUserRequest",
+      "example": {
+        "username": "bagas",
+        "password": "agustian123",
+        "name": "Bagas Anggara",
+        "email": "bagas@gmail.com",
+        "phone": "082115879753",
+        "role": [
+          2,
+          3
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "role": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "required": [
+        "username",
+        "password",
+        "name",
+        "email",
+        "phone",
+        "role"
+      ]
+    },
+    "EditUserByIdRequest": {
+      "title": "EditUserByIdRequest",
+      "example": {
+        "username": "basssa",
+        "password": "agustian123",
+        "name": "Agustian Nugraha",
+        "email": "agustian@gmail.com",
+        "phone": "082115879753",
+        "role": [
+          1,
+          2
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "role": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "required": [
+        "username",
+        "password",
+        "name",
+        "email",
+        "phone",
+        "role"
+      ]
+    },
+    "CreateTicketRequest": {
+      "title": "CreateTicketRequest",
+      "example": {
+        "subject": "Tidak bisa mengahpus data di CRM",
+        "ticketNumber": "ST20190529001",
+        "email": "dani@gmail.com",
+        "phone": "021329312",
+        "issueDescription": "Website tidak merespon saat menghapus data sales",
+        "requesterUser": 4,
+        "category": 2
+      },
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "ticketNumber": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "issueDescription": {
+          "type": "string"
+        },
+        "requesterUser": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "category": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "subject",
+        "ticketNumber",
+        "email",
+        "phone",
+        "issueDescription",
+        "requesterUser",
+        "category"
+      ]
+    },
+    "EditTicketByIdRequest": {
+      "title": "EditTicketByIdRequest",
+      "example": {
+        "subject": "Tidak bisa mengahpus data di CRM gagal",
+        "ticketNumber": "ST20190529001",
+        "email": "dani@gmail.com",
+        "phone": "021329312",
+        "issueDescription": "Website tidak merespon saat menghapus data sales",
+        "requesterUser": 4,
+        "category": 2,
+        "userClosed": true,
+        "actionDoneDescription": "Restart Server",
+        "assignedUser": 3,
+        "priority": 4,
+        "staffClosed": true,
+        "state": 1
+      },
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "ticketNumber": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "issueDescription": {
+          "type": "string"
+        },
+        "requesterUser": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "category": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userClosed": {
+          "type": "boolean"
+        },
+        "actionDoneDescription": {
+          "type": "string"
+        },
+        "assignedUser": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "staffClosed": {
+          "type": "boolean"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "subject",
+        "ticketNumber",
+        "email",
+        "phone",
+        "issueDescription",
+        "requesterUser",
+        "category",
+        "userClosed",
+        "actionDoneDescription",
+        "assignedUser",
+        "priority",
+        "staffClosed",
+        "state"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": ""
+    },
+    {
+      "name": "Users",
+      "description": ""
+    },
+    {
+      "name": "Tickets",
+      "description": ""
+    }
+  ]
+}

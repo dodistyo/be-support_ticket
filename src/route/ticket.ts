@@ -5,6 +5,9 @@ import { checkRole } from "../middleware/checkRole";
 
   const router = Router();
 
+  //Get detail count for dashboard
+  router.get("/detailDashboard", [checkJwt, checkRole(["ADMIN","MANAGER","STAFF","USER"])], TicketController.getDetailDashboard);
+
   //Get all tickets
   router.get("/", [checkJwt, checkRole(["ADMIN","MANAGER"])], TicketController.listAll);
 

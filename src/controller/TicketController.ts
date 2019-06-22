@@ -260,15 +260,20 @@ static editTicket = async (req: Request, res: Response) => {
     if(subject) ticket.subject = subject;
     if(email) ticket.email = email;
     if(phone) ticket.phone = phone;
-    if(ticket.userClosed && staffClosed){
+    if (state != 4 && state != 1){
+      if(ticket.userClosed && staffClosed){
       theState = 4 // set state closed
-    }else if(!ticket.userClosed && !staffClosed){
-      theState = 1 // set state open
-    }else if(!staffClosed && ticket.userClosed){
-      theState = 3
-    }else if(staffClosed && !ticket.userClosed){
-      theState = 2
+      }else if(!ticket.userClosed && !staffClosed){
+        theState = 1 // set state open
+      }else if(!staffClosed && ticket.userClosed){
+        theState = 3
+      }else if(staffClosed && !ticket.userClosed){
+        theState = 2
+      }
+    }else{
+      theState = state
     }
+    
     ticket.staffClosed = staffClosed;
     if(category) ticket.category = <any>{ id : category };
     if(actionDoneDescription) ticket.actionDoneDescription = actionDoneDescription;
@@ -276,15 +281,20 @@ static editTicket = async (req: Request, res: Response) => {
   }else if(checkUser){
     //Field to update
     let theState;
-    if(ticket.staffClosed && userClosed){
+    if(state != 4 && state != 1){
+      if(ticket.staffClosed && userClosed){
       theState = 4 // set state closed
-    }else if(!ticket.staffClosed && !userClosed){
-      theState = 1 // set state open
-    }else if(!userClosed && ticket.staffClosed){
-      theState = 2 
-    }else if(userClosed && !ticket.staffClosed){
-      theState = 3
+      }else if(!ticket.staffClosed && !userClosed){
+        theState = 1 // set state open
+      }else if(!userClosed && ticket.staffClosed){
+        theState = 2 
+      }else if(userClosed && !ticket.staffClosed){
+        theState = 3
+      }
+    }else{
+      theState = state
     }
+    
     if(subject) ticket.subject = subject;
     if(email) ticket.email = email;
     if(phone) ticket.phone = phone;
@@ -343,6 +353,27 @@ static deleteTicket = async (req: Request, res: Response) => {
   }
   res.status(200).send(response);
 };
+
+static getDetailDashboard = async (req: Request, res: Response) => {
+  //Get the ID from the url
+
+  //Get the ticket from database
+  const ticketRepository = getRepository(Ticket);
+  try {
+    const ticket = await ticketRepository.query(`
+    SELECT count(*) total,
+    sum(case when stateId = 4 then 1 else 0 end) closed,
+    sum(case when stateId = 1 then 1 else 0 end) opened
+    FROM ticket
+    `);
+    let persen = (ticket[0].closed / ticket[0].total) * 100
+    ticket[0]['persen'] = persen
+    res.send(ticket[0]);
+  } catch (error) {
+    res.status(404).send("Ticket not found");
+  }
+};
+
 };
 
 export default TicketController;

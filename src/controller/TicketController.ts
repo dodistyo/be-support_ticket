@@ -260,7 +260,7 @@ static editTicket = async (req: Request, res: Response) => {
     if(subject) ticket.subject = subject;
     if(email) ticket.email = email;
     if(phone) ticket.phone = phone;
-    if (state != 4 && state != 1){
+    if (state != 4 || state != 1){
       if(ticket.userClosed && staffClosed){
       theState = 4 // set state closed
       }else if(!ticket.userClosed && !staffClosed){
@@ -281,7 +281,7 @@ static editTicket = async (req: Request, res: Response) => {
   }else if(checkUser){
     //Field to update
     let theState;
-    if(state != 4 && state != 1){
+    if(state != 4 || state != 1){
       if(ticket.staffClosed && userClosed){
       theState = 4 // set state closed
       }else if(!ticket.staffClosed && !userClosed){

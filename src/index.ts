@@ -9,9 +9,8 @@ import * as swaggerUi from "swagger-ui-express";
 var graphqlHTTP = require('express-graphql');
 var { buildSchema } = require('graphql');
 import { importSchema } from "graphql-import";
-import { resolvers } from "./resolvers"
-import * as path from "path"
-import root from "./route/graphql-route"
+import * as path from "path";
+import root from "./route/graphql-route";
 
 //Connects to the Database -> then starts the express
 createConnection()

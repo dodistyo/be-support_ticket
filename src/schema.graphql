@@ -1,0 +1,11 @@
+type Query {
+    hello: String
+    categories: [Category]
+}
+# Master Data
+type Category {
+    id: Int
+    name: String
+    createdAt: String
+    updatedAt: String
+}

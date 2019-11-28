@@ -6,12 +6,13 @@ import * as cors from "cors";
 import routes from "./route";
 import * as swaggerUi from "swagger-ui-express";
 import * as graphqlHTTP from "express-graphql";
-import { buildSchema } from "graphql";
+import { buildSchema } from "type-graphql";
 import { importSchema } from "graphql-import";
 import * as path from "path";
 import root from "./route/graphql-root";
 import "reflect-metadata";
-import { Notification } from "./entity/Notification";
+import { CategoryResolver } from "./resolver/category-resolver";
+import { UserResolver } from "./resolver/user-resolver";
 
 //Connects to the Database -> then starts the express
 createConnection()
@@ -55,12 +56,12 @@ createConnection()
     //     return 'Hello world!';
     //   }
     // };
-    const schema = buildSchema(
-      importSchema(path.join(__dirname, "./schema.graphql"))
-      )
+    const schema = await buildSchema({ resolvers: [CategoryResolver, UserResolver] })
+      // importSchema(path.join(__dirname, "./schema.graphql"))
+      // )
     app.use('/graphql', graphqlHTTP({
       schema: schema,
-      rootValue: root,
+      // rootValue: root,
       graphiql: true,
     }));
 

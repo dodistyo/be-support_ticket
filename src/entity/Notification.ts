@@ -10,26 +10,31 @@ import {
     UpdateDateColumn
   } from "typeorm";
 import { Length, IsNotEmpty } from "class-validator";
-import { ID, Field, ObjectType } from "type-graphql";
+import { User } from "./User";
+import { Ticket } from "./Ticket";
   
-@ObjectType()
+
 @Entity()
-export class Category {
-  @Field(type => ID)
+export class Notification {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field()
   @Column()
-  @Length(8, 40)
-  name: string;
+  message: string;
 
-  @Field()
+  @ManyToOne(type => User)
+  forUser: User;
+
+  @ManyToOne(type => Ticket, { onDelete: 'CASCADE' })
+  relatedTicket: Ticket;
+
+  @Column()
+  isRead : boolean;
+
   @Column()
   @CreateDateColumn()
   createdAt: Date;
 
-  @Field()
   @Column()
   @UpdateDateColumn()
   updatedAt: Date;

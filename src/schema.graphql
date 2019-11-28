@@ -2,6 +2,7 @@ type Query {
     hello: String
     users: [User]
     categories: [Category]
+    notifications: [Notification]
 }
 # Master Data
 type User {
@@ -18,4 +19,9 @@ type Category {
     name: String
     createdAt: String
     updatedAt: String
+}
+type Notification {
+    id: Int
+    message: String
+    isRead: Int
 }

@@ -1,6 +1,6 @@
 const rootDir = process.env.NODE_ENV === "development" ?
   "src" :
-  "build/src"
+  "build"
 
 module.exports = {
   "type": "mariadb",
@@ -11,9 +11,9 @@ module.exports = {
   "database": "support_ticket",
   "synchronize": true,
   "logging": false,
-  "entities": [rootDir + "/entities/**/*.{js,ts}"],
-  "migrations": [rootDir + "/migrations/*.{js,ts}"],
-  "subscribers": [rootDir + "/subscribers/**/*.{js,ts}"],
-  "seeds": [rootDir + "/migrations/seeds/**/*.{js,ts}"],
-  "factories": [rootDir + "/migrations/factories/**/*.{js,ts}"],
+  "entities": [rootDir + "/entity/**/*.{js,ts}"],
+  "migrations": [rootDir + "/migration/*.{js,ts}"],
+  "subscribers": [rootDir + "/subscriber/**/*.{js,ts}"],
+  "seeds": [rootDir + "/migration/seeds/**/*.{js,ts}"],
+  "factories": [rootDir + "/migration/factories/**/*.{js,ts}"],
 } 

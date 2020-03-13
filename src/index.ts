@@ -70,7 +70,6 @@ createConnection()
       let channel = []
       channel.push('notif for manager');
       for (let cn of channel) {
-        console.log(cn)
         socket.on(cn,function(notification){
           io.emit(cn,notification);
         });
